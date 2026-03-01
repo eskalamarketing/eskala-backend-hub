@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-  res.send("Eskala Backend Hub activo 🚀");
+  res.send("Eskala Backend Hub activo ✅");
 });
 
 app.get("/meta-sync", (req, res) => {
