@@ -1,15 +1,24 @@
-const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
 
+// 1) Salud (para comprobar que Railway está vivo)
+// Página raíz (para que no salga "Cannot GET /")
 app.get("/", (req, res) => {
-  res.send("Eskala Backend Hub activo 🚀");
+  res.send("Eskala Backend Hub ✅");
 });
 
-app.get("/meta-sync", (req, res) => {
-  res.json({ message: "Meta sync endpoint ready" });
+// Salud (para probar Railway)
+app.get("/health", (req, res) => {
+  res.json({ ok: true, service: "eskala-backend-hub", ts: new Date().toISOString() });
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
+// 2) Endpoint de prueba para confirmar que tu Backend Hub responde
+// Ping (para probar API)
+app.get("/api/ping", (req, res) => {
+  res.json({ ok: true, message: "pong" });
 });
+
+// (Luego aquí pondremos /meta/insights y /capi/event, etc.)
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
