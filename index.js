@@ -76,11 +76,3 @@ app.get("/sync/daily", async (req, res) => {
 });
 
 app.listen(PORT, () => console.log("Server listening on", PORT));
-
-app.get("/meta/debug-env", (req, res) => {
-  res.json({
-    has_META_ACCESS_TOKEN: !!process.env.META_ACCESS_TOKEN,
-    has_META_AD_ACCOUNT_ID: !!process.env.META_AD_ACCOUNT_ID,
-    meta_ad_account_id_value: process.env.META_AD_ACCOUNT_ID || null,
-  });
-});
